@@ -1,62 +1,70 @@
 #include <stdio.h>
 
-//DESAFIO XADREZ NIVEL: NOVATO.
-//utilizando uma estrutura de repetição diferente (for, while ou do-while) para simulaçao dos movimentos.
-
-// Desafio de XADREZ - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+// DESAFIO XADREZ NÍVEL: AVENTUREIRO.
+// Acrescentando a simulação do movimento do Cavalo utilizando loops aninhados.
 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    
-    // CORREÇÃO: Implementando a sugestão de usar CONSTANTES
-    // Usamos 'const' para garantir que esses valores não sejam alterados acidentalmente.
-    // Por convenção, constantes são nomeadas em MAIÚSCULAS.
-    const int CASAS_TORRE = 5;
-    const int CASAS_BISPO = 5;
-    const int CASAS_RAINHA = 8;
-
 
     // --- MOVIMENTO DA TORRE: usando a estrutura for ---
     // A Torre move-se 5 casas para a direita
-    
-    // Usamos a constante diretamente no 'printf' e na condição do loop
-    printf("--- Movimento da Torre (%d casas para a direita) ---\n", CASAS_TORRE);
-    
-    // O loop 'for' executa um numero fixo de vezes (lendo a constante)
-    for (int i = 0; i < CASAS_TORRE; i++) {
+
+    // Variável para controlar o número de casas percorridas
+    int casas_torre = 5; 
+
+    printf("--- Movimento da Torre (5 casas para a direita) ---\n");
+
+    // O loop 'for' executa um número fixo de vezes
+    for (int i = 0; i < casas_torre; i++) {
         printf("Direita\n");
     }
 
     // --- MOVIMENTO DO BISPO: usando a estrutura while ---
     // O Bispo move-se 5 casas na diagonal (cima e direita)
-    
-    // CORREÇÃO: Criamos um 'contador' separado para o loop,
-    // pois a constante CASAS_BISPO não pode ser decrementada.
-    int contador_bispo = CASAS_BISPO;
-    
-    printf("\n--- Movimento do Bispo (%d casas na diagonal) ---\n", CASAS_BISPO);
-    
-    // O loop 'while' continua enquanto a condicao for verdadeira
-    while (contador_bispo > 0) {
+
+    // Variável para controlar o número de casas percorridas
+    int casas_bispo = 5;
+
+    printf("\n--- Movimento do Bispo (5 casas na diagonal) ---\n");
+
+    // O loop 'while' continua enquanto a condição for verdadeira
+    while (casas_bispo > 0) {
         printf("Cima, Direita\n");
-        contador_bispo--; // Decrementa o CONTADOR, não a constante
+        casas_bispo--; // Decrementa a variável a cada iteração
     }
 
     // --- MOVIMENTO DA RAINHA: usando a estrutura do-while ---
     // A Rainha move-se 8 casas para a esquerda
-    
-    // CORREÇÃO: Mesmo caso do 'while', usamos um contador separado.
-    int contador_rainha = CASAS_RAINHA;
-    
-    printf("\n--- Movimento da Rainha (%d casas para a esquerda) ---\n", CASAS_RAINHA);
-    
-    // O loop 'do-while' garante que o codigo seja executado pelo menos uma vez
+
+    // Variável para controlar o número de casas percorridas
+    int casas_rainha = 8;
+
+    printf("\n--- Movimento da Rainha (8 casas para a esquerda) ---\n");
+
+    // O loop 'do-while' garante que o código seja executado pelo menos uma vez
     do {
         printf("Esquerda\n");
-        contador_rainha--; // Decrementa o CONTADOR
-    } while (contador_rainha > 0);
+        casas_rainha--; // Decrementa a variável a cada iteração
+    } while (casas_rainha > 0);
+
+    // --- CORREÇÃO: MOVIMENTO DO CAVALO: usando loops aninhados ---
+    // O Cavalo se move em "L": duas casas em uma direção e uma perpendicularmente.
+    // Simulação: 2 casas para baixo e 1 casa para a esquerda.
     
+    printf("\n--- Movimento do Cavalo (2 casas para baixo e 1 para a esquerda) ---\n");
+    
+    // Primeiro loop (externo) para o movimento vertical (2 casas para baixo)
+    for (int i = 0; i < 2; i++) {
+        printf("Baixo\n");
+        
+        // Loop (interno) aninhado que só executa na última iteração do loop externo
+        // (ou seja, após o segundo movimento "Baixo")
+        if (i == 1) { 
+            // Loop interno para o movimento horizontal (1 casa para a esquerda)
+            for (int j = 0; j < 1; j++) {
+                printf("Esquerda\n");
+            }
+        }
+    }
+
     return 0;
 }
